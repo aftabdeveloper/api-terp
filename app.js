@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/user');
+const usersRouter = require('./routes/user.routes');
 const commonRouter = require("./routes/common.routes");
 const ValidClient = require("./middleware/valid-client.middleware")
 const app = express();
