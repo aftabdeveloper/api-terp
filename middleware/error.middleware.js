@@ -3,7 +3,10 @@ const Error = (err,req,res,next)=>{
     err.message = err.message || 'Internal server error'
     res.status(err.statusCode).json({
         success: false,
-        error: err
+        error: {
+            message: err.message,
+            status: err.statusCode
+        }
     })
 }
 
