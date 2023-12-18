@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt")
 const mongoose = require("mongoose")
 const {Schema} = mongoose
 const userSchema = new Schema({
@@ -17,6 +18,10 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
+    company: {
+        type: Schema.Types.ObjectId,
+        ref: "Company"
+    },
     createdAt: {
         type: Date,
         default: Date.now
@@ -25,6 +30,11 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now
     }
+})
+
+userSchema.pre("save", async function(){
+    const password = await bcrypt.hash(this.password,12);
+    this.password = password
 })
 
 userSchema.index({ email: 1}, { unique: true })
