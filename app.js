@@ -10,7 +10,7 @@ const indexRouter = require('./routes/index');
 const commonRouter = require("./routes/common.routes");
 const ValidClient = require("./middleware/valid-client.middleware")
 const Error = require("./middleware/error.middleware")
-
+const userRouter = require("./routes/user.routes")
 const app = express();
 
 // view engine setup
@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(ValidClient)
 app.use('/', indexRouter);
 app.use("/common",commonRouter)
+app.use("/user",userRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
